@@ -57,20 +57,35 @@
       </div>
     </section>
     
-    <section id="contact" class="section">
-        <div class="container section-inner">
-          <h2>Contact</h2>
-          <p>The easiest way to reach me is by email:</p>
-    <p><a href="mailto:you@email.com" class="accent">nolan.r.gentile@gmail.com</a></p>
-  </div>
-    </section>
+  <section id="contact" class="section">
+  <div class="container section-inner">
+    <h2>Contact</h2>
 
+    <p>Email: <span id="email"></span></p>
+
+    <a href="https://www.linkedin.com/in/nolan-gentile/"
+       target="_blank"
+       class="btn linkedin-btn">
+      Connect on LinkedIn
+    </a>
+
+  </div>
+</section>
+
+<script>
+  // Email obfuscation for spam protection
+  const user = "nolan.r.gentile";
+  const domain = "gmail.com";
+  const email = `${user}@${domain}`;
+  document.getElementById("email").innerHTML =
+    `<a href="mailto:${email}" class="accent">${email}</a>`;
+</script>
     
 
   </main>
 
   <footer class="site-footer">
-    <div class="container">© <span id="year"></span> Nolan</div>
+    <div class="container">© <span id="year"></span> Nolan Gentile</div>
   </footer>
 
   <script>
