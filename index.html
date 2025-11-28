@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Name – Portfolio & Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio, resume, and blog of Your Name." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <a href="#top" class="brand-name">Your Name</a>
+      </div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Portfolio & Blog</p>
+          <h1>Hi, I’m <span class="accent">Your Name</span>.</h1>
+          <p class="hero-subtitle">
+            A short sentence about who you are & what you do.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container section-inner">
+        <h2>About</h2>
+        <p>Write a 3–5 sentence bio here.</p>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container section-inner">
+        <h2>Experience</h2>
+        <p>Add your jobs here.</p>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container section-inner">
+        <h2>Projects</h2>
+        <p>Add your projects here.</p>
+      </div>
+    </section>
+
+    <section id="blog" class="section">
+      <div class="container section-inner">
+        <h2>Blog</h2>
+        <p>Blog posts go here.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container section-inner">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:you@email.com">you@email.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> Your Name</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
