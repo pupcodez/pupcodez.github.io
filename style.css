@@ -81,4 +81,45 @@ a:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(10, 102, 194, 0.45);
 }
+/* Experience section */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.experience-item {
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: radial-gradient(circle at top left, #1f2937 0, #020617 70%);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.85);
+}
+
+.experience-item header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.experience-item h3 {
+  margin: 0;
+}
+
+.experience-item .meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.experience-item ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.experience-item li + li {
+  margin-top: 0.25rem;
+}
 
