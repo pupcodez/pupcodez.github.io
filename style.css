@@ -1,5 +1,4 @@
-/* -------------------- Global -------------------- */
-
+/* ============ Base ============ */
 *,
 *::before,
 *::after {
@@ -13,21 +12,30 @@ html {
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #020617 0, #020617 35%, #020617 100%);
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
   color: #e5e7eb;
   line-height: 1.7;
 }
 
-/* subtle noise overlay for depth */
+/* subtle texture */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.18;
   mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
   z-index: -1;
+}
+
+a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .container {
@@ -40,157 +48,84 @@ body::before {
   padding: 4.5rem 0;
 }
 
-/* -------------------- Header & Nav -------------------- */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  backdrop-filter: blur(16px);
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 23, 42, 0.92),
-    rgba(15, 23, 42, 0.78)
-  );
-  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-  padding: 0.8rem 0;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
+.section-inner h2 {
+  font-size: 1.7rem;
+  margin-bottom: 0.75rem;
 }
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* site title if you have one */
-.site-title {
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  color: #e5e7eb;
-  opacity: 0.9;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-}
-
-.nav a {
-  position: relative;
-  margin-left: 1.25rem;
-  text-decoration: none;
-  color: #cbd5f5;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  opacity: 0.8;
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.3rem;
-  width: 0;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #38bdf8, #a855f7);
-  transition: width 0.22s ease;
-}
-
-.nav a:hover {
-  opacity: 1;
-  transform: translateY(-1px);
-}
-
-.nav a:hover::after {
-  width: 100%;
-}
-
-/* -------------------- Hero -------------------- */
+/* ============ Hero ============ */
 
 .hero {
   padding: 6rem 0 4rem;
   background:
-    radial-gradient(circle at top, #1f2937 0, #020617 55%),
-    radial-gradient(circle at 120% 120%, #0f172a 0, #020617 60%);
-  min-height: calc(100vh - 70px);
+    radial-gradient(circle at top, #1f2937 0, #020617 60%),
+    radial-gradient(circle at 120% 120%, #020617 0, #000 60%);
+  min-height: 75vh;
   display: flex;
   align-items: center;
 }
 
 .hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
-  gap: 3.5rem;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+  gap: 3rem;
   align-items: center;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding-top: 5rem;
-    min-height: auto;
-  }
+.hero-text {
+  max-width: 32rem;
+}
 
-  .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
+/* eyebrow label “Portfolio & Blog” */
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin: 0 0 0.75rem;
 }
 
 .hero h1 {
   font-size: clamp(2.4rem, 3.3vw, 3rem);
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
   line-height: 1.1;
 }
 
 .hero-lede {
   font-size: 1rem;
   color: #cbd5f5;
-  max-width: 32rem;
+  max-width: 28rem;
   margin-bottom: 1.75rem;
 }
 
-/* gradient accent text */
-.accent {
-  background: linear-gradient(120deg, #38bdf8, #a855f7, #22c55e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* pill meta row (e.g. location / role tags) */
-.hero-meta {
+/* tags row if you want later */
+.hero-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
-.hero-pill {
-  padding: 0.3rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  background: rgba(15, 23, 42, 0.65);
+.hero-tag {
   font-size: 0.8rem;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  background: rgba(15, 23, 42, 0.7);
   color: #cbd5f5;
 }
 
-/* right side: avatar / card */
+/* right side hero card */
 .hero-aside {
   justify-self: center;
 }
 
 .hero-card {
   position: relative;
-  padding: 1.4rem 1.5rem;
+  padding: 1.4rem 1.6rem;
   border-radius: 1.1rem;
-  background: radial-gradient(circle at top left, #1f2937 0, #020617 70%);
-  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+  border: 1px solid rgba(148, 163, 184, 0.55);
   box-shadow:
     0 18px 45px rgba(15, 23, 42, 0.95),
     0 0 0 1px rgba(15, 23, 42, 1);
@@ -201,52 +136,51 @@ body::before {
   content: "";
   position: absolute;
   inset: -40%;
-  background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 55%);
-  opacity: 0.7;
+  background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.22), transparent 60%);
   pointer-events: none;
 }
 
-/* if you use an img inside .hero-card */
-.hero-avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: 999px;
-  border: 2px solid rgba(56, 189, 248, 0.6);
-  object-fit: cover;
-  margin-bottom: 0.75rem;
+/* accent gradient text */
+.accent {
+  background: linear-gradient(120deg, #38bdf8, #a855f7, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* -------------------- Links & Buttons -------------------- */
-
-a {
-  color: #38bdf8;
+/* hero buttons row */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-a:hover {
-  text-decoration: underline;
-}
+/* ============ Buttons ============ */
 
-/* general primary button (if you want to reuse) */
-.btn-primary {
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  padding: 0.7rem 1.4rem;
+  gap: 0.4rem;
+  padding: 0.65rem 1.3rem;
   border-radius: 999px;
-  border: 1px solid rgba(56, 189, 248, 0.8);
-  background: radial-gradient(circle at top left, #0ea5e9 0, #0369a1 45%, #0f172a 100%);
-  color: #e5e7eb;
   font-size: 0.9rem;
   font-weight: 500;
-  text-decoration: none;
+  border: 1px solid transparent;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(8, 47, 73, 0.8);
+  text-decoration: none;
   transition:
     transform 0.16s ease,
     box-shadow 0.16s ease,
     background 0.16s ease,
     border-color 0.16s ease;
+}
+
+.btn-primary {
+  border-color: rgba(56, 189, 248, 0.8);
+  background: radial-gradient(circle at top left, #0ea5e9 0, #0369a1 45%, #0f172a 100%);
+  color: #e5e7eb;
+  box-shadow: 0 10px 25px rgba(8, 47, 73, 0.8);
 }
 
 .btn-primary:hover {
@@ -256,31 +190,18 @@ a:hover {
 }
 
 .btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.55);
-  background: rgba(15, 23, 42, 0.65);
+  border-color: rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.7);
   color: #e5e7eb;
-  font-size: 0.9rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    background 0.16s ease,
-    border-color 0.16s ease,
-    transform 0.16s ease;
 }
 
 .btn-ghost:hover {
-  background: rgba(15, 23, 42, 0.9);
-  border-color: rgba(148, 163, 184, 0.9);
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(148, 163, 184, 1);
   transform: translateY(-1px);
 }
 
-/* LinkedIn button styling */
+/* LinkedIn */
 .linkedin-btn {
   background: #0A66C2;
   color: #fff !important;
@@ -291,7 +212,7 @@ a:hover {
   font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   text-decoration: none;
   margin-top: 0.75rem;
   box-shadow: 0 4px 12px rgba(10, 102, 194, 0.35);
@@ -304,30 +225,45 @@ a:hover {
   box-shadow: 0 6px 16px rgba(10, 102, 194, 0.45);
 }
 
-/* -------------------- Experience Section -------------------- */
+/* ============ Sections (About / Blog / Contact) ============ */
+
+.section-inner {
+  position: relative;
+}
+
+/* subtle top border glow */
+.section-inner::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, #38bdf8, transparent);
+  opacity: 0.7;
+}
+
+/* ============ Experience ============ */
 
 .experience-list {
+  position: relative;
+  margin-top: 1.75rem;
+  padding-left: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin-top: 1.5rem;
 }
 
-/* optional vertical line for a “timeline” feel */
-.experience-list {
-  position: relative;
-  padding-left: 0.7rem;
-}
-
+/* vertical timeline line */
 .experience-list::before {
   content: "";
   position: absolute;
-  left: 0.1rem;
+  left: 0.2rem;
   top: 0.4rem;
   bottom: 0.4rem;
   width: 2px;
   border-radius: 999px;
-  background: linear-gradient(to bottom, rgba(56, 189, 248, 0.6), rgba(148, 163, 184, 0.1));
+  background: linear-gradient(to bottom, rgba(56, 189, 248, 0.7), rgba(148, 163, 184, 0.1));
 }
 
 .experience-item {
@@ -335,7 +271,7 @@ a:hover {
   padding: 1.25rem 1.5rem;
   border-radius: 0.9rem;
   border: 1px solid rgba(148, 163, 184, 0.45);
-  background: radial-gradient(circle at top left, #1f2937 0, #020617 70%);
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
   box-shadow:
     0 16px 35px rgba(15, 23, 42, 0.95),
     0 0 0 1px rgba(15, 23, 42, 1);
@@ -347,16 +283,17 @@ a:hover {
     background 0.18s ease;
 }
 
+/* timeline dot */
 .experience-item::before {
   content: "";
   position: absolute;
-  left: -0.85rem;
+  left: -0.9rem;
   top: 1.4rem;
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  background: radial-gradient(circle, #38bdf8 0, #0f172a 75%);
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+  background: radial-gradient(circle, #38bdf8 0, #0f172a 70%);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18);
 }
 
 .experience-item:hover {
@@ -370,7 +307,7 @@ a:hover {
 .experience-item header {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.25rem;
   margin-bottom: 0.7rem;
 }
 
@@ -379,16 +316,10 @@ a:hover {
   font-size: 1.02rem;
 }
 
-.experience-item .meta {
+.meta {
   margin: 0;
   font-size: 0.8rem;
   color: #9ca3af;
-}
-
-.experience-item .meta span + span::before {
-  content: "•";
-  margin: 0 0.35rem;
-  color: rgba(148, 163, 184, 0.6);
 }
 
 .experience-item ul {
@@ -402,13 +333,45 @@ a:hover {
   margin-top: 0.3rem;
 }
 
-/* -------------------- Footer (optional) -------------------- */
+/* ============ Contact ============ */
+
+#contact p {
+  margin-bottom: 0.75rem;
+}
+
+/* ============ Footer ============ */
 
 .site-footer {
-  padding: 2.5rem 0 2rem;
+  padding: 2.6rem 0 2.1rem;
   font-size: 0.8rem;
   color: #9ca3af;
   border-top: 1px solid rgba(148, 163, 184, 0.25);
   margin-top: 3rem;
   text-align: center;
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 4.5rem;
+    min-height: auto;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hero-aside {
+    order: -1; /* card above text on mobile (optional) */
+  }
+
+  .experience-list {
+    padding-left: 0.4rem;
+  }
+
+  .experience-item::before {
+    left: -0.7rem;
+  }
 }
