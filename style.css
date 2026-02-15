@@ -240,3 +240,63 @@ a:hover {
     padding: 3.5rem 0;
   }
 }
+
+/* ===============================
+   Story Grid
+================================== */
+
+.story-grid {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.story-card {
+  border-radius: 1rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.03);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.story-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.08),
+    0 6px 14px rgba(0, 0, 0, 0.05);
+  border-color: #f6c453;
+}
+
+.story-link {
+  display: block;
+  padding: 1.4rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.story-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.story-meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.story-preview {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
