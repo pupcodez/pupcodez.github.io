@@ -350,4 +350,25 @@ a:hover {
   font-size: 0.9rem;
   color: #475569;
 }
+.story-card {
+  position: relative;
+}
+
+.story-card.draft {
+  opacity: 0.8;
+  cursor: default;
+}
+
+.draft-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
 
