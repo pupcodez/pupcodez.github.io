@@ -1,167 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Nolan Gentile – Work Showcase & Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Work Showcase, resume, and blog of Nolan" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nolan Gentile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #eef1f7;
+    --paper: #e4e9f2;
+    --ink: #111827;
+    --ink-muted: #3d4a63;
+    --ink-faint: #7a8aa8;
+    --navy: #1b3057;
+    --navy-mid: #2a4a7f;
+    --steel: #4a6fa5;
+    --pale: #c8d8ef;
+    --gold: #a8924a;
+    --border: #b0c0d8;
+    --serif: 'Playfair Display', Georgia, serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --body: 'Lora', Georgia, serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 52px;
+    border-bottom: 3px solid var(--steel);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--cream);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--pale);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: #fff; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .hero-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+    border: 1px solid var(--steel);
+    display: inline-block;
+    padding: 3px 10px;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+  }
+
+  h1 em {
+    color: var(--steel);
+    font-style: italic;
+  }
+
+  .hero-bio {
+    font-size: 17px;
+    color: var(--ink-muted);
+    max-width: 520px;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--navy);
+    color: var(--cream);
+    border: 2px solid var(--navy);
+    padding: 10px 22px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--navy-mid); border-color: var(--navy-mid); }
+
+  .btn-secondary {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--navy);
+    border: 2px solid var(--border);
+    padding: 10px 22px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover { border-color: var(--navy); }
+
+  .hero-ornament {
+    width: 140px;
+    flex-shrink: 0;
+    opacity: 0.15;
+    margin-top: 1rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0.5rem 0 3rem;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid var(--border);
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2.5rem 4rem;
+  }
+
+  /* EXPERIENCE */
+  .job {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0 2.5rem;
+    margin-bottom: 2.75rem;
+    padding-bottom: 2.75rem;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .job:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .job-meta {
+    text-align: right;
+    padding-top: 4px;
+  }
+
+  .job-years {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .job-location {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+  }
+
+  .job-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+
+  .job-org {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--navy-mid);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  .job-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .job-bullets li {
+    font-size: 15px;
+    color: var(--ink-muted);
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+    line-height: 1.65;
+  }
+
+  .job-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--steel);
+    font-size: 12px;
+    top: 3px;
+  }
+
+  /* BLOG */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    border: 1px solid var(--border);
+    background: var(--paper);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .post-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--steel);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.25s;
+  }
+
+  .post-card:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .post-card:hover::after { transform: scaleY(1); }
+
+  .post-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 0.65rem;
+    display: block;
+  }
+
+  .post-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    color: var(--navy);
+  }
+
+  .post-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .post-date {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+  }
+
+  .post-card.coming-soon {
+    opacity: 0.55;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* CONTACT STRIP */
+  .contact-strip {
+    background: var(--navy);
+    padding: 3rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+    border-top: 3px solid var(--steel);
+  }
+
+  .contact-strip p {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-style: italic;
+    color: var(--pale);
+    max-width: 400px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-end;
+  }
+
+  .contact-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--pale);
+    text-decoration: none;
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .contact-links a:hover { opacity: 1; color: #fff; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid #1f3b62;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #4a6585;
+  }
+</style>
 </head>
 <body>
-  
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <p class="eyebrow">Portfolio & Blog</p>
-          <h1>Hi, I’m <span class="accent">Nolan</span>.</h1>
-         
-        </div>
-      </div>
-    </section>
+<nav>
+  <span class="nav-logo">N. Gentile</span>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#notes">Field Notes</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <section id="about" class="section">
-      <div class="container section-inner">
-        <h2>About</h2>
-        <p>Hello! Welcome to my work showcase and Blog site! Here, I plan to keep up with my professional experiences and share some fun stories along the way. </p>
-      </div>
-    </section>
+<div class="hero">
+  <div>
+    <span class="hero-badge">Researcher · Ecologist · Writer</span>
+    <h1>Hi, I'm <em>Nolan.</em></h1>
+    <p class="hero-bio">
+      I work at the intersection of ecology, conservation, and logistics — chasing invasive species across Malibu, coordinating strategy at Pepperdine, and writing about the world between fieldwork trips.
+    </p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-primary">My Work</a>
+      <a href="#notes" class="btn-secondary">Field Notes</a>
+    </div>
+  </div>
 
-  <section id="experience" class="section">
-  <div class="container section-inner">
-    <h2>Experience</h2>
+  <svg class="hero-ornament" viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1b3057" stroke-width="1.2">
+    <line x1="70" y1="200" x2="70" y2="10"/>
+    <path d="M70 160 Q40 130 20 100 Q50 105 70 135"/>
+    <path d="M70 140 Q100 110 120 80 Q90 88 70 115"/>
+    <path d="M70 110 Q45 85 30 55 Q58 65 70 90"/>
+    <path d="M70 90 Q95 65 110 35 Q83 48 70 72"/>
+    <ellipse cx="70" cy="10" rx="8" ry="12" stroke-width="1"/>
+    <circle cx="20" cy="100" r="4" fill="#1b3057"/>
+    <circle cx="120" cy="80" r="4" fill="#1b3057"/>
+    <circle cx="30" cy="55" r="3" fill="#1b3057"/>
+    <circle cx="110" cy="35" r="3" fill="#1b3057"/>
+  </svg>
+</div>
 
-    <div class="experience-list">
+<div class="divider"><hr class="rule"></div>
 
-      <!-- Experience 1 -->
-      <article class="experience-item">
-        <header>
-          <h3>Executive Assistant to the Vice Provost – Pepperdine University</h3>
-          <p class="meta">Malibu, CA · 2025 – Present</p>
-        </header>
-        <ul>
-           <li>Managed executive scheduling and coordinated high-level meetings to support strategic priorities.</li>
-          <li>Prepared agendas, minutes, and briefing materials for leadership committees, improving decision-making flow.</li>
-          <li>Processed and reconciled credit card and expense reports with full policy compliance.</li>
-          <li>Supported university events and initiatives through logistics planning and stakeholder communication.</li>
-          <li>Served as primary liaison to internal partners, ensuring timely responses and consistent communication.</li>
-        </ul>
-      </article>
+<section id="experience">
+  <p class="section-label">Professional record</p>
 
-      <!-- Experience 2 -->
-      <article class="experience-item">
-        <header>
-          <h3>Exotic Species Controller – RCDSMM</h3>
-          <p class="meta">Malibu, CA · 2024 – 2025</p>
-        </header>
-        <ul>
-          <li>Developed and implemented advanced strategies for invasive species control by using technology to boost efficiency and reduce environmental impact.
-</li>
-          <li>Led targeted eradication efforts, achieving significant invasive species reductions and supporting native ecosystem recovery. While following local compliance regulations.</li>
-        </ul>
-      </article>
+  <div class="job">
+    <div class="job-meta">
+      <span class="job-years">2025 – Present</span>
+      <span class="job-location">Malibu, CA</span>
+    </div>
+    <div>
+      <p class="job-title">Executive Assistant to the Vice Provost</p>
+      <p class="job-org">Pepperdine University</p>
+      <ul class="job-bullets">
+        <li>Managed executive scheduling and coordinated high-level meetings to support strategic priorities.</li>
+        <li>Prepared agendas, minutes, and briefing materials for leadership committees, improving decision-making flow.</li>
+        <li>Processed and reconciled credit card and expense reports with full policy compliance.</li>
+        <li>Supported university events through logistics planning and stakeholder communication.</li>
+        <li>Served as primary liaison to internal partners, ensuring timely responses and consistent communication.</li>
+      </ul>
+    </div>
+  </div>
 
-      <!-- Experience 3 (optional) -->
-      <article class="experience-item">
-        <header>
-          <h3>Executive Assistant – Johnnie-O</h3>
-          <p class="meta">Santa Monica, CA · 2020 – 2024</p>
-        </header>
-        <ul>
-          <li>Reduced photoshoot costs by 5% of the total budget through strategic resource management.</li>
-          <li>Accelerated project timelines by 33%, enhancing efficiency and meeting goals ahead of schedule.</li>
-        </ul>
-      </article>
+  <div class="job">
+    <div class="job-meta">
+      <span class="job-years">2024 – 2025</span>
+      <span class="job-location">Malibu, CA</span>
+    </div>
+    <div>
+      <p class="job-title">Exotic Species Controller</p>
+      <p class="job-org">RCDSMM</p>
+      <ul class="job-bullets">
+        <li>Developed and implemented advanced strategies for invasive species control using technology to boost efficiency and reduce environmental impact.</li>
+        <li>Led targeted eradication efforts, achieving significant invasive species reductions and supporting native ecosystem recovery in compliance with local regulations.</li>
+      </ul>
+    </div>
+  </div>
 
+  <div class="job">
+    <div class="job-meta">
+      <span class="job-years">2020 – 2024</span>
+      <span class="job-location">Santa Monica, CA</span>
+    </div>
+    <div>
+      <p class="job-title">Executive Assistant</p>
+      <p class="job-org">Johnnie-O</p>
+      <ul class="job-bullets">
+        <li>Reduced photoshoot costs by 5% of total budget through strategic resource management.</li>
+        <li>Accelerated project timelines by 33%, enhancing efficiency and meeting goals ahead of schedule.</li>
+      </ul>
     </div>
   </div>
 </section>
 
+<div class="divider"><hr class="rule"></div>
 
-    
+<section id="notes">
+  <p class="section-label">Nolan's notes</p>
 
-    <section id="blog" class="section">
-  <div class="container section-inner">
-    <h2>Nolan's Notes</h2>
-    <p>Stories from trips, fieldwork, and life experiments.</p>
-
-    <div class="story-grid">
-
-      <article class="story-card">
-      <a href="stories/costa-rica.html" class="story-link">
-          <div class="story-content">
-            <h3>Costa Rica: Jungle, Surf, and Sloths</h3>
-            <p class="story-meta">2024 · Travel</p>
-            <p class="story-preview">
-              A week in the rainforest chasing waves, wildlife, and fun. 
-            </p>
-          </div>
-       </a>
-      </article>
-
-      <article class="story-card">
-        <a href="stories/argentina-field-trip.html" class="story-link">
-          <div class="story-content">
-            <h3>Argentina Research Expedition</h3>
-            <p class="story-meta">2023 · Fieldwork</p>
-            <p class="story-preview">
-              Teaching ecology across Patagonia with 15 students and a lot of wind.
-            </p>
-          </div>
-        </a>
-      </article>
-
-      <article class="story-card">
-        <a href="stories/tokyo-march.html" class="story-link">
-          <div class="story-content">
-            <h3>Tokyo in March</h3>
-            <p class="story-meta">2026 · Travel</p>
-            <p class="story-preview">
-              Coming soon!
-            </p>
-          </div>
-        </a>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-    
-  <section id="contact" class="section">
-  <div class="container section-inner">
-    <h2>Contact</h2>
-
-    <p>Email: <span id="email"></span></p>
-
-    <a href="https://www.linkedin.com/in/nolan-gentile/"
-       target="_blank"
-       class="btn linkedin-btn">
-      Connect on LinkedIn
+  <div class="blog-grid">
+    <a href="https://www.nolangentile.com/stories/costa-rica.html" class="post-card">
+      <span class="post-tag">Travel · 2024</span>
+      <p class="post-title">Costa Rica: Jungle, Surf, and Sloths</p>
+      <p class="post-desc">A week in the rainforest chasing waves, wildlife, and fun.</p>
+      <span class="post-date">Read more →</span>
     </a>
 
+    <a href="https://www.nolangentile.com/stories/argentina-field-trip.html" class="post-card">
+      <span class="post-tag">Fieldwork · 2023</span>
+      <p class="post-title">Argentina Research Expedition</p>
+      <p class="post-desc">Teaching ecology across Patagonia with 15 students and a lot of wind.</p>
+      <span class="post-date">Read more →</span>
+    </a>
+
+    <div class="post-card coming-soon">
+      <span class="post-tag">Travel · 2026</span>
+      <p class="post-title">Tokyo in March</p>
+      <p class="post-desc">Coming soon — notes from the trip are in progress.</p>
+      <span class="post-date">In the field…</span>
+    </div>
   </div>
 </section>
 
-<script>
-  // Email obfuscation for spam protection
-  const user = "nolan.r.gentile";
-  const domain = "gmail.com";
-  const email = `${user}@${domain}`;
-  document.getElementById("email").innerHTML =
-    `<a href="mailto:${email}" class="accent">${email}</a>`;
-</script>
-    
+<div class="contact-strip" id="contact">
+  <p>"Let's make something happen — in the field or otherwise."</p>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/nolan-gentile/">LinkedIn ↗</a>
+    <a href="mailto:">Email me ↗</a>
+  </div>
+</div>
 
-  </main>
+<footer>
+  <p>© Nolan Gentile · Built with care</p>
+</footer>
 
-  <footer class="site-footer">
-    <div class="container">© <span id="year"></span> Nolan Gentile</div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
